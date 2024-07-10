@@ -10,6 +10,7 @@ namespace BlazorAppJWT
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddControllers(); // <- API
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
 
@@ -31,6 +32,8 @@ namespace BlazorAppJWT
 
             app.UseStaticFiles();
             app.UseAntiforgery();
+
+            app.MapControllers(); // <- API
 
             app.MapRazorComponents<App>()
                 .AddInteractiveWebAssemblyRenderMode()

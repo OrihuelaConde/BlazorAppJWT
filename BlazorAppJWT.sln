@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppJWT", "BlazorAppJWT\BlazorAppJWT.csproj", "{2E73B61F-0828-47EE-A462-00C55CD022B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppJWT.Client", "BlazorAppJWT.Client\BlazorAppJWT.Client.csproj", "{3BE2C4A6-B0D2-4DBD-B8BB-BB0895D35772}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E73B61F-0828-47EE-A462-00C55CD022B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E73B61F-0828-47EE-A462-00C55CD022B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E73B61F-0828-47EE-A462-00C55CD022B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E73B61F-0828-47EE-A462-00C55CD022B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BE2C4A6-B0D2-4DBD-B8BB-BB0895D35772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BE2C4A6-B0D2-4DBD-B8BB-BB0895D35772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BE2C4A6-B0D2-4DBD-B8BB-BB0895D35772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BE2C4A6-B0D2-4DBD-B8BB-BB0895D35772}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {584A83EB-B270-4858-BCD0-02C4C402E50D}
+	EndGlobalSection
+EndGlobal

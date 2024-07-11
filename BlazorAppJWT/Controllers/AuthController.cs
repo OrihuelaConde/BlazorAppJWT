@@ -1,4 +1,4 @@
-﻿using BlazorAppJWT.Client;
+﻿using BlazorAppJWT.Client.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -15,7 +15,7 @@ namespace BlazorAppJWT.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] UserLoginDto userLogin)
         {
-            if( userLogin.Username.CompareTo("User") == 0 && userLogin.Password.CompareTo("Pass") == 0)
+            if (userLogin.Username == "User" && userLogin.Password == "Pass")
             {
                 var claims = new[]
                 {
@@ -33,7 +33,7 @@ namespace BlazorAppJWT.Controllers
                 return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
             }
 
-            return NotFound();
+            return Forbid();
         }
     }
 }

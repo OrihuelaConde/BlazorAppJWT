@@ -1,0 +1,23 @@
+﻿@page "/login"
+@inject TokenProviderService TokenProvider
+
+<PageTitle>Login</PageTitle>
+
+<h1>Login</h1>
+
+<input @bind="UserLoginDto.Username" placeholder="Username" />
+<input type="password" @bind="UserLoginDto.Password" placeholder="Password" />
+<button @onclick="LoginUser">Login</button>
+
+<h3 style="margin-top: 10px;">Token</h3>
+<p><em>@Token</em></p>
+
+@code {
+    private UserLoginDto UserLoginDto { get; set; } = new();
+    private string? Token { get; set; }
+
+    private async Task LoginUser()
+    {
+        Token = await TokenProvider.GetToken(UserLoginDto.Username, UserLoginDto.Password);
+    }
+}

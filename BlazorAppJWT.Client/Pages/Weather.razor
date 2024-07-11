@@ -7,9 +7,17 @@
 
 <p>This component demonstrates showing data.</p>
 
-@if (forecasts == null)
+@if (loading)
 {
     <p><em>Loading...</em></p>
+}
+else if (notAuthorized)
+{
+    <p><em>Not authorized</em></p>
+}
+else if(forecasts == null)
+{
+    <p><em>No results</em></p>
 }
 else
 {
@@ -38,9 +46,34 @@ else
 
 @code {
     private WeatherForecast[]? forecasts;
+    private bool loading;
+    private bool notAuthorized;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await HttpClient.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast");
+        loading = true;
+
+        try
+        {
+            var result = await HttpClient.GetAsync("api/WeatherForecast");
+
+            if (!result.IsSuccessStatusCode)
+            {
+                if (result.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    notAuthorized = true;
+
+                return;
+            }
+
+            forecasts = await result.Content.ReadFromJsonAsync<WeatherForecast[]>();
+        }
+        catch (Exception)
+        {
+            // TODO
+        }
+        finally
+        {
+            loading = false;
+        }
     }
 }

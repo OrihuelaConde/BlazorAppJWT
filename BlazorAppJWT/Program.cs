@@ -1,5 +1,8 @@
 using BlazorAppJWT.Client.Pages;
 using BlazorAppJWT.Components;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace BlazorAppJWT
 {
@@ -13,6 +16,25 @@ namespace BlazorAppJWT
             builder.Services.AddControllers(); // <- API
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "issuer",
+                    ValidAudience = "audience",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("b2a1badfd4f2ecaf96aec5b4a683d67baab144cb4b5265b93f957d5f264a61e2"))
+                };
+            }); // <- Auth
 
             var app = builder.Build();
 
@@ -33,6 +55,7 @@ namespace BlazorAppJWT
             app.UseStaticFiles();
             app.UseAntiforgery();
 
+            app.UseAuthorization(); // <- Auth
             app.MapControllers(); // <- API
 
             app.MapRazorComponents<App>()

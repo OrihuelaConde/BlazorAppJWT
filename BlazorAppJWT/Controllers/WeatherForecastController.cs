@@ -1,9 +1,11 @@
 ﻿using BlazorAppJWT.Client;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorAppJWT.Controllers
 {
-    [ApiController]
+    [Authorize]
+    [ApiController]    
     [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
